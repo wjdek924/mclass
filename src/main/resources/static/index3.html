@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울 벚꽃나들이 🌸</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffe6f0, #ffe0b2);
+    font-family: 'Baloo 2', cursive;
+    overflow-x: hidden;
+    position: relative;
+    height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 40px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #ff3366;
+    text-shadow: 2px 2px #fff7f7, 4px 4px #ff99aa;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: #ff6699;
+  }
+
+  .message {
+    font-size: 1.5rem;
+    line-height: 2.0;
+    margin: 30px 0;
+  }
+
+  .highlight {
+    color: #ff3366;
+    font-weight: bold;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, #ff99cc, #ff66ff, #ffccff);
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  }
+
+  .footnote {
+    margin-top: 40px;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+  }
+
+  /* 벚꽃 페탈 전체 화면 효과 */
+  .petal {
+    position: fixed;
+    top: -50px;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.8;
+    z-index: 5;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>서울 벚꽃나들이 🌸</h1>
+    <h2>3월과 4월, 여러 번 고고씽!</h2>
+
+    <div class="message">
+      📅 <span class="highlight">오후 반차</span> 쓰고 출발!<br>
+      🧳 <span class="highlight">필수 준비물: 혜운님!!</span> 안 가져오면 다은니 눈치봄 😆<br>
+      🍽️ 유혹의 멘트: <span class="highlight">다은니가 맛있는 거 사줌</span> 😋<br>
+      🌸 상큼하게 벚꽃 흩날리는 서울 나들이 즐기자 💕
+    </div>
+
+    <a href="#" class="btn">참석할래요! 💌</a>
+
+    <div class="footnote">
+      벚꽃이 날리면 마음도 꽃길만 걷게 된다구요 🌈💖
+    </div>
+  </div>
+
+  <script>
+    // 화면 전체 벚꽃 생성
+    const colors = ['#ffc0cb','#ffb6c1','#ff69b4','#ff1493','#ffa6c9'];
+    const numPetals = 60; // 페탈 개수
+
+    for(let i=0;i<numPetals;i++){
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      const size = 10 + Math.random()*15; // 크기 랜덤
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
+      petal.style.left = Math.random()*100 + 'vw';
+      petal.style.background = colors[Math.floor(Math.random()*colors.length)];
+      petal.style.animationDuration = (4 + Math.random()*6) + 's';
+      petal.style.animationDelay = Math.random()*5 + 's';
+      petal.style.transform = 'rotate(' + Math.random()*360 + 'deg)';
+      document.body.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
