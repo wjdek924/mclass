@@ -3,14 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spring Boot 테스트 페이지</title>
+<title>동탄 나들이 초대장</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+  body {
+    font-family: 'Jua', sans-serif;
+    background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    text-align: center;
+    animation: float 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #ff4c4c;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px #ffe0e0;
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 2px 2px #ffe0e0; }
+    to { text-shadow: 4px 4px #ffaaaa; }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
+  .info {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    line-height: 1.8;
+  }
+
+  .highlight {
+    color: #ff4c4c;
+    font-weight: bold;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+
+  .emoji {
+    font-size: 2rem;
+    animation: bounce 1.2s infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+  }
+
+  .decor {
+    font-size: 3rem;
+    margin: 20px 0;
+    animation: spin 6s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .footnote {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+</style>
 </head>
 <body>
-<!-- <h1>🎉 Spring Boot 정적 파일 서빙 성공!</h1>
-<p>이 페이지는 src/main/resources/static/index.html 파일입니다.</p> -->
-<h1>🎉 수정이 공부 열심히 하거라!</h1>
-<p>이 페이지는 수정이 공부 열심히 하라고 응원하는 페이지 입니다!</p>
-<p>모두모두 수정이의 열공을 지금 당장 NOW!! 응원해주세여!!!</p>
-<p>수정이 화이티이이이이이잉이!!!</p>
+  <div class="container">
+    <div class="decor">✨🎉🚗💨</div>
+    <h1>동탄 나들이 초대장</h1>
+    <h2>겁나 심심한 날, 우리 같이 떠나요!</h2>
+
+    <div class="info">
+      <p>📅 <span class="highlight">날짜:</span> 26년 중 겁나 심심한 날</p>
+      <p>🏡 <span class="highlight">장소:</span> 작고 소중하고 아늑한 <span class="highlight">다은이네 집</span></p>
+      <p>🗺️ <span class="highlight">코스:</span> 동탄 투어🐱‍🏍 → 서울 찜해둔 카페 & 맛집 → 서울역에서 빠이빠이</p>
+      <p>🎁 <span class="highlight">특별 제공:</span> 동탄 파브로바 🧁</p>
+      <p>💤 필요 시 우리집에서 재워줌 😴</p>
+    </div>
+
+    <div class="emoji">🥳🍰☕🛵💨</div>
+
+    <a href="#" class="btn">참석할게요! 💌</a>
+
+    <div class="footnote">
+      P.S. 심심하면 심심한 날에도 함께라면 즐거움 폭발 🚀
+    </div>
+  </div>
 </body>
 </html>
