@@ -22,8 +22,7 @@ pipeline {
         stage('Git Checkout') {
             steps { // step : stage 안에서 실행할 실제 명령어 체크아웃
                 // Jenkins가 연결된 Git 저장소에서 최신 코드 
-                checkout scm
-                sh 'git pull'
+                checkout scm                
             }
         }
 
