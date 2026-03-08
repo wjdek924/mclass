@@ -56,6 +56,7 @@ pipeline {
         stage('Remote Docker Build & Deploy') {
             steps {
                 sshagent (credentials: [env.SSH_CREDENTIALS_ID]) {
+                    //ENDSSH는 절대 들여쓰기 없이 맨 앞 적어야된다 이렇게 적어야 오류가 안난다.
                     sh """
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${REMOTE_USER}@${REMOTE_HOST} << ENDSSH
 cd ${REMOTE_DIR} || exit 1

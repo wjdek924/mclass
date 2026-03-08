@@ -3,131 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>동탄 나들이 초대장</title>
+
+<title>초대장</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-  body {
-    font-family: 'Jua', sans-serif;
-    background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Pretendard',sans-serif;
+}
 
-  .container {
-    max-width: 700px;
-    margin: 50px auto;
-    background: rgba(255,255,255,0.95);
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    text-align: center;
-    animation: float 3s ease-in-out infinite alternate;
-  }
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#5f9cff,#8fd3f4);
+padding:20px;
+}
 
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-15px); }
-  }
+/* 카드 */
 
-  h1 {
-    font-size: 3rem;
-    color: #ff4c4c;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px #ffe0e0;
-    animation: glow 1.5s ease-in-out infinite alternate;
-  }
+.container{
+width:100%;
+max-width:650px;
 
-  @keyframes glow {
-    from { text-shadow: 2px 2px #ffe0e0; }
-    to { text-shadow: 4px 4px #ffaaaa; }
-  }
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(15px);
 
-  h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 30px;
-  }
+border-radius:24px;
 
-  .info {
-    font-size: 1.2rem;
-    margin: 20px 0;
-    line-height: 1.8;
-  }
+padding:45px 30px;
 
-  .highlight {
-    color: #ff4c4c;
-    font-weight: bold;
-  }
+box-shadow:
+0 20px 50px rgba(0,0,0,0.15);
 
-  .btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5);
-    color: white;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
+text-align:center;
 
-  .btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-  }
+animation:fadeUp 1s ease;
+}
 
-  .emoji {
-    font-size: 2rem;
-    animation: bounce 1.2s infinite alternate;
-  }
+/* 제목 */
 
-  @keyframes bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
-  }
+.title{
+font-size:32px;
+font-weight:600;
+color:#333;
+margin-bottom:10px;
+}
 
-  .decor {
-    font-size: 3rem;
-    margin: 20px 0;
-    animation: spin 6s linear infinite;
-  }
+.subtitle{
+font-size:15px;
+color:#666;
+margin-bottom:35px;
+}
 
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+/* 버튼 그리드 */
 
-  .footnote {
-    margin-top: 40px;
-    font-size: 0.9rem;
-    color: #555;
-  }
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+/* 버튼 */
+
+.btn{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+
+height:65px;
+
+border-radius:14px;
+
+text-decoration:none;
+color:white;
+
+font-weight:500;
+font-size:16px;
+
+transition:all .25s ease;
+
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* 버튼 색 */
+
+.btn1{background:linear-gradient(135deg,#4facfe,#00f2fe);}
+.btn2{background:linear-gradient(135deg,#667eea,#764ba2);}
+.btn3{background:linear-gradient(135deg,#ff758c,#ff7eb3);}
+.btn4{background:linear-gradient(135deg,#f6d365,#fda085);}
+.btn5{background:linear-gradient(135deg,#43e97b,#38f9d7);}
+
+/* 버튼 효과 */
+
+.btn:hover{
+
+transform:translateY(-4px) scale(1.02);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,0.25);
+}
+
+.btn:active{
+transform:scale(.97);
+}
+
+/* 아이콘 */
+
+.icon{
+font-size:18px;
+}
+
+/* 푸터 */
+
+.footer{
+
+margin-top:35px;
+font-size:13px;
+color:#888;
+}
+
+/* 애니메이션 */
+
+@keyframes fadeUp{
+
+0%{
+opacity:0;
+transform:translateY(30px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* 모바일 */
+
+@media(max-width:480px){
+
+.container{
+padding:35px 20px;
+}
+
+.title{
+font-size:26px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.btn{
+height:60px;
+font-size:15px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="decor">✨🎉🚗💨</div>
-    <h1>동탄 나들이 초대장</h1>
-    <h2>겁나 심심한 날, 우리 같이 떠나요!</h2>
 
-    <div class="info">
-      <p>📅 <span class="highlight">날짜:</span> 26년 중 겁나 심심한 날</p>
-      <p>🏡 <span class="highlight">장소:</span> 작고 소중하고 아늑한 <span class="highlight">다은이네 집</span></p>
-      <p>🗺️ <span class="highlight">코스:</span> 동탄 투어🐱‍🏍 → 서울 찜해둔 카페 & 맛집 → 서울역에서 빠이빠이</p>
-      <p>🎁 <span class="highlight">특별 제공:</span> 동탄 파브로바 🧁</p>
-      <p>💤 필요 시 우리집에서 재워줌 😴</p>
-    </div>
+<div class="container">
 
-    <div class="emoji">🥳🍰☕🛵💨</div>
+<div class="title">✨ 초대장</div>
+<div class="subtitle">아래 버튼을 눌러 페이지로 이동하세요</div>
 
-    <a href="#" class="btn">참석할게요! 💌</a>
+<div class="grid">
 
-    <div class="footnote">
-      P.S. 심심하면 심심한 날에도 함께라면 즐거움 폭발 🚀
-    </div>
-  </div>
+<a class="btn btn1" href="index1.html">
+<i class="fas fa-map-location-dot icon"></i>
+동탄 나들이 초대장
+</a>
+
+<a class="btn btn2" href="index2.html">
+<i class="fas fa-heart icon"></i>
+우리가족 사랑의 메시지
+</a>
+
+<a class="btn btn3" href="index3.html">
+<i class="fas fa-tree icon"></i>
+벚꽃놀이 초대장
+</a>
+
+<a class="btn btn4" href="index4.html">
+<i class="fas fa-plane icon"></i>
+대전투어 초대장
+</a>
+
+<a class="btn btn5" href="index5.html">
+<i class="fas fa-book icon"></i>
+수정이 열공해라
+</a>
+
+</div>
+
+<div class="footer">
+Invitation Page • 2026
+</div>
+
+</div>
+
 </body>
 </html>
