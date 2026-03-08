@@ -23,6 +23,7 @@ pipeline {
             steps { // step : stage 안에서 실행할 실제 명령어 체크아웃
                 // Jenkins가 연결된 Git 저장소에서 최신 코드 
                 checkout scm
+                sh 'git pull'
             }
         }
 
@@ -61,7 +62,7 @@ pipeline {
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${REMOTE_USER}@${REMOTE_HOST} << ENDSSH
 cd ${REMOTE_DIR} || exit 1
 docker rm -f ${CONTAINER_NAME} || true
-docker build -t ${DOCKER_IMAGE} .
+docker build --no-cache -t ${DOCKER_IMAGE} .
 docker run -d --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${DOCKER_IMAGE}
 ENDSSH
 """
