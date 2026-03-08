@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>대전 마피아 초대장</title>
+  <style>
+    :root {
+      --bg1: #ff7eb6;
+      --bg2: #7afcff;
+      --bg3: #fff385;
+      --bg4: #b388ff;
+      --ink: #2f1b4b;
+      --line: rgba(255,255,255,0.35);
+      --shadow: 0 12px 35px rgba(120, 40, 140, 0.18);
+      --radius: 26px;
+      --danger: #ff4d94;
+      --accent: #6d4aff;
+      --good: #00c389;
+      --error: #ff5c7a;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.7) 0 5%, transparent 6%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.6) 0 4%, transparent 5%),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,.55) 0 4%, transparent 5%),
+        linear-gradient(135deg, var(--bg1), var(--bg2) 35%, var(--bg3) 70%, var(--bg4));
+      background-size: 180px 180px, 220px 220px, 200px 200px, cover;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 42vmax;
+      height: 42vmax;
+      filter: blur(30px);
+      z-index: 0;
+      opacity: .22;
+      pointer-events: none;
+      animation: floatBlob 12s ease-in-out infinite;
+      border-radius: 50%;
+    }
+
+    body::before {
+      left: -10vmax;
+      top: -8vmax;
+      background: #fff;
+    }
+
+    body::after {
+      right: -12vmax;
+      bottom: -10vmax;
+      background: #ffddff;
+      animation-delay: -4s;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(2vmax, 2vmax) scale(1.08); }
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sparkle,
+    .sticker {
+      position: absolute;
+      animation: drift linear infinite;
+      opacity: .85;
+      user-select: none;
+    }
+
+    .sparkle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 0 16px rgba(255,255,255,.95);
+    }
+
+    .sticker {
+      font-size: clamp(18px, 4vw, 34px);
+      filter: drop-shadow(0 5px 8px rgba(0,0,0,.14));
+    }
+
+    @keyframes drift {
+      from { transform: translateY(105vh) rotate(0deg); }
+      to { transform: translateY(-12vh) rotate(360deg); }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 18px 16px 60px;
+    }
+
+    .marquee {
+      margin: 6px 0 16px;
+      overflow: hidden;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.48);
+      background: rgba(255,255,255,.32);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      padding: 10px 0;
+      animation: marquee 17s linear infinite;
+      font-weight: 800;
+      font-size: .94rem;
+      letter-spacing: .02em;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.18));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 24px 18px 20px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -18%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,.75), transparent 66%);
+      animation: pulse 5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: .7; }
+      50% { transform: scale(1.18); opacity: 1; }
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.68);
+      font-size: .82rem;
+      font-weight: 800;
+      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: clamp(2rem, 7vw, 3.7rem);
+      line-height: .96;
+      letter-spacing: -0.04em;
+    }
+
+    .gradient-text {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff2f92, #6d4aff, #00b3ff, #ff8a00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 4.8s linear infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: .98rem;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .info-list, .chips, .itinerary {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-item,
+    .chip,
+    .itinerary-item,
+    .person-btn,
+    .action-btn,
+    .mini-note,
+    .select-btn {
+      border-radius: 20px;
+    }
+
+    .info-item {
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(255,255,255,.58);
+      padding: 14px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .8rem;
+      font-weight: 800;
+      opacity: .75;
+    }
+
+    .value {
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .chips {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .chip {
+      background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.35));
+      border: 1px solid rgba(255,255,255,.6);
+      padding: 14px 12px;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1.35;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(calc(var(--r, 0) * 1deg));
+    }
+
+    .chip::after {
+      content: "✨";
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      font-size: 16px;
+      opacity: .7;
+    }
+
+    .itinerary-item {
+      position: relative;
+      padding: 14px 14px 14px 50px;
+      background: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.62);
+      font-weight: 900;
+      overflow: hidden;
+    }
+
+    .itinerary-item::before {
+      content: attr(data-emoji);
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-57%) scale(1.12); }
+    }
+
+    .role-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .role-box::before {
+      content: "🔐 비밀 미션 구역 🔐";
+      position: absolute;
+      top: 12px;
+      right: -40px;
+      transform: rotate(16deg);
+      background: linear-gradient(90deg, #ff4d94, #ff8a00);
+      color: white;
+      font-weight: 900;
+      font-size: .72rem;
+      padding: 7px 48px;
+      box-shadow: 0 8px 18px rgba(255,77,148,.3);
+    }
+
+    .warning {
+      margin: 8px 0 14px;
+      padding: 13px 14px;
+      background: rgba(255,255,255,.54);
+      border: 1px dashed rgba(109,74,255,.45);
+      font-size: .92rem;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 10px;
+    }
+
+    .person-btn,
+    .action-btn,
+    .select-btn {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .person-btn,
+    .select-btn {
+      padding: 16px 12px;
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--ink);
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+      border: 1px solid rgba(255,255,255,.75);
+      box-shadow: 0 8px 20px rgba(80,40,120,.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .person-btn::after,
+    .select-btn::after {
+      content: "tap!";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      font-size: .7rem;
+      opacity: .55;
+      transform: rotate(-9deg);
+    }
+
+    .person-btn:active,
+    .action-btn:active,
+    .select-btn:active { transform: scale(.98); }
+
+    .person-btn:hover,
+    .action-btn:hover,
+    .select-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(80,40,120,.18);
+    }
+
+    .person-btn.checked {
+      background: linear-gradient(180deg, rgba(232,255,244,.95), rgba(214,247,233,.8));
+      border-color: rgba(0,195,137,.35);
+    }
+
+    .helper {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .mini-note {
+      padding: 10px 12px;
+      font-size: .82rem;
+      font-weight: 800;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(255,255,255,.6);
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      text-align: center;
+      font-size: .9rem;
+      font-weight: 800;
+      opacity: .84;
+    }
+
+    .modal,
+    .pass-screen,
+    .auth-screen {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 20;
+    }
+
+    .modal.show,
+    .pass-screen.show,
+    .auth-screen.show {
+      display: flex;
+      animation: fadeIn .22s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(33, 14, 55, 0.55);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-card,
+    .pass-card,
+    .auth-card {
+      position: relative;
+      width: min(100%, 440px);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.42);
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72));
+      box-shadow: 0 18px 50px rgba(20,10,40,.28);
+      padding: 22px 18px 18px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .close-x {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font: inherit;
+      font-size: 1.25rem;
+      font-weight: 1000;
+      color: var(--ink);
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: 0 8px 20px rgba(80,40,120,.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .18s ease, box-shadow .18s ease;
+      z-index: 2;
+    }
+
+    .close-x:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 28px rgba(80,40,120,.18);
+    }
+
+    .close-x:active {
+      transform: scale(.97);
+    }
+
+    .modal-card::before,
+    .pass-card::before,
+    .auth-card::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -10%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,255,255,.8), transparent 62%);
+      pointer-events: none;
+    }
+
+    .modal-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .8rem;
+      margin-bottom: 10px;
+    }
+
+    .modal-tag.mafia {
+      background: rgba(255,77,148,.12);
+      color: #d11767;
+      border: 1px solid rgba(255,77,148,.28);
+    }
+
+    .modal-tag.citizen {
+      background: rgba(0,195,137,.12);
+      color: #087755;
+      border: 1px solid rgba(0,195,137,.28);
+    }
+
+    .name-title {
+      margin: 0;
+      font-size: 1.55rem;
+      font-weight: 1000;
+      letter-spacing: -.04em;
+    }
+
+    .role-title {
+      margin: 8px 0 10px;
+      font-size: clamp(1.7rem, 6vw, 2.2rem);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .role-title.mafia { color: var(--danger); }
+    .role-title.citizen { color: var(--good); }
+
+    .role-desc,
+    .auth-card p,
+    .pass-card p {
+      margin: 0 0 16px;
+      font-size: .98rem;
+      line-height: 1.7;
+      font-weight: 800;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 1000;
+      color: white;
+      background: linear-gradient(135deg, #6d4aff, #ff4d94, #ff8a00);
+      box-shadow: 0 12px 24px rgba(109,74,255,.24);
+    }
+
+    .auth-select-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 14px;
+    }
+
+    .select-btn.selected {
+      background: linear-gradient(180deg, rgba(255,232,245,.98), rgba(246,220,255,.9));
+      border-color: rgba(255,77,148,.35);
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .field {
+      text-align: left;
+      margin: 10px 0 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: .86rem;
+      font-weight: 900;
+      opacity: .82;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(109,74,255,.2);
+      background: rgba(255,255,255,.86);
+      font: inherit;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: .24em;
+      color: var(--ink);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    .field input:focus {
+      border-color: rgba(109,74,255,.55);
+      box-shadow: 0 0 0 5px rgba(109,74,255,.08);
+    }
+
+    .error-msg,
+    .lock-msg,
+    .auth-hint {
+      font-weight: 900;
+      line-height: 1.6;
+      font-size: .88rem;
+      min-height: 1.6em;
+    }
+
+    .error-msg { color: var(--error); }
+    .lock-msg { color: #9b2c5a; }
+    .auth-hint { color: rgba(47,27,75,.72); }
+
+    .code-guide {
+      margin-top: 10px;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.45);
+      border: 1px dashed rgba(109,74,255,.3);
+      font-size: .82rem;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 30;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 16px;
+      border-radius: 5px;
+      animation: confettiFall linear forwards;
+      opacity: .95;
+    }
+
+    @keyframes confettiFall {
+      from { transform: translateY(-12vh) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(680deg); opacity: .9; }
+    }
+
+    .tiny {
+      font-size: .78rem;
+      opacity: .75;
+      line-height: 1.6;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+
+    @media (min-width: 700px) {
+      .grid.cols-2 {
+        grid-template-columns: 1.05fr .95fr;
+      }
+
+      .hero { padding: 30px 26px 24px; }
+      .card { padding: 22px; }
+      .people-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .auth-select-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles" id="sparkles"></div>
+  <div class="confetti" id="confetti"></div>
+
+  <div class="wrap">
+    <div class="marquee">
+      <div class="marquee-track">
+        💖 대전 출동 💖 맛도리맛집 💖 느좋카페 💖 빵집투어 💖 대장추천코스 💖 승은 대장 💖 승은 공지 담당 💖 비밀 마피아 2명 💖 대전 출동 💖 맛도리맛집 💖 느좋카페 💖 빵집투어 💖 대장추천코스 💖 승은 대장 💖 승은 공지 담당 💖 비밀 마피아 2명 💖
+      </div>
+    </div>
+
+    <section class="card hero">
+      <div class="badge-row">
+        <span class="badge">📍 장소: 대전</span>
+        <span class="badge">👭 참가: 5명</span>
+        <span class="badge">👑 대장님: 승은</span>
+        <span class="badge">📢 공지: 승은</span>
+      </div>
+      <h1>
+        <span class="gradient-text">대전 우당탕탕</span><br />
+        <span class="gradient-text">비밀 마피아 투어</span>
+      </h1>
+      <p>
+        예영, 승은, 민정, 동기, 다은의 왁자지껄 대전 출동!<br />
+        맛도리맛집 → 느좋카페 → 빵집투어 → <b>젤 중요한 대장추천코스</b>까지,<br />
+        귀염뽀짝 텐션으로 놀다가 마지막에 마피아 맞히기까지 가보자구 ✨
+      </p>
+    </section>
+
+    <div class="grid cols-2">
+      <section class="card">
+        <h2 class="section-title">🎀 모임 정보</h2>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="label">장소</span>
+            <span class="value">대전</span>
+          </div>
+          <div class="info-item">
+            <span class="label">참가 인원</span>
+            <span class="value">예영 · 승은 · 민정 · 동기 · 다은</span>
+          </div>
+          <div class="info-item">
+            <span class="label">대장님</span>
+            <span class="value">승은</span>
+          </div>
+          <div class="info-item">
+            <span class="label">일정 공지 담당</span>
+            <span class="value">승은이가 공지 예정</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">🍓 투어 코스</h2>
+        <div class="itinerary">
+          <div class="itinerary-item" data-emoji="🍜">맛도리맛집</div>
+          <div class="itinerary-item" data-emoji="☕">느좋카페</div>
+          <div class="itinerary-item" data-emoji="🥐">빵집투어</div>
+          <div class="itinerary-item" data-emoji="👑">젤중요한 대장추천코스</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:14px;">
+      <h2 class="section-title">💘 오늘의 키워드</h2>
+      <div class="chips">
+        <div class="chip" style="--r:-2;">MZ 무드 폭발</div>
+        <div class="chip" style="--r:2;">정신없지만 귀여움</div>
+        <div class="chip" style="--r:-3;">사진 왕창 찍기</div>
+        <div class="chip" style="--r:3;">끝날 때 마피아 추리</div>
+      </div>
+    </section>
+
+    <section class="card role-box" style="margin-top:14px;">
+      <div style="display:flex;justify-content:center;margin:4px 0 14px;">
+        <button class="action-btn" id="openAuthScreenBtn" style="max-width:320px;">🕵️ 마피아 확인하기</button>
+      </div>
+      <h2 class="section-title">🕵️ 개인 비밀 확인</h2>
+      <div class="warning">
+        각자 자기 <b>4자리 비밀코드</b>를 입력해야만 확인돼요.<br />
+        개인코드는 다은이에게 은밀히 물어봐주세요!
+      </div>
+
+      <div class="people-grid" id="peopleGrid"></div>
+
+      <div class="helper">
+        <div class="mini-note">🎲 마피아는 딱 2명만 랜덤 선정</div>
+        <div class="mini-note">🤷‍♂️ 벌칙은 아직 못정했어요😥</div>
+      </div>
+    </section>
+
+    <div class="footer-note">💗 대전에서 제일 시끄럽고 제일 귀엽게 놀기 💗</div>
+  </div>
+
+  <div class="auth-screen" id="authScreen" aria-hidden="true">
+    <div class="backdrop"></div>
+    <div class="auth-card">
+      <button type="button" class="close-x" id="closeAuthBtn" aria-label="닫기">✕</button>
+      <h3 class="name-title">🔐 내 역할 확인하기</h3>
+      <p>본인 이름을 선택하고, 본인만 아는 4자리 비밀코드를 입력해주세요.</p>
+
+      <div class="auth-select-grid" id="authSelectGrid"></div>
+
+      <div class="field">
+        <label for="codeInput">4자리 비밀코드</label>
+        <input id="codeInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" />
+      </div>
+
+      <div class="error-msg" id="errorMsg"></div>
+      <div class="lock-msg" id="lockMsg"></div>
+      <div class="auth-hint" id="authHint">이름 선택 후 코드 입력 → 역할 확인 버튼 누르기</div>
+
+      <button class="action-btn" id="openRoleBtn">내 역할 확인하기</button>
+    </div>
+  </div>
+
+
+  <div class="modal" id="resultModal" aria-hidden="true">
+    <div class="backdrop"></div>
+    <div class="modal-card">
+      <div id="resultTag" class="modal-tag">비밀 역할</div>
+      <p class="name-title" id="resultName">이름</p>
+      <h3 class="role-title" id="resultRole">역할</h3>
+      <p class="role-desc" id="resultDesc"></p>
+      <button class="action-btn" id="closeResultBtn">확인 완료! 화면 가리기</button>
+    </div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      place: "대전",
+      leader: "승은",
+      noticeBy: "승은",
+      people: ["예영", "승은", "민정", "동기", "다은"],
+      mafiaCount: 2,
+      storageKey: "daejeon_mafia_roles_v2",
+      codeKey: "daejeon_mafia_codes_v1",
+      stateKey: "daejeon_mafia_view_state_v1",
+      maxAttempts: 3,
+      lockMinutes: 3,
+      defaultCodes: {
+        "예영": "1037",
+        "승은": "2481",
+        "민정": "5520",
+        "동기": "7714",
+        "다은": "8902"
+      }
+    };
+
+    const peopleGrid = document.getElementById("peopleGrid");
+    const authScreen = document.getElementById("authScreen");
+    const authSelectGrid = document.getElementById("authSelectGrid");
+    const codeInput = document.getElementById("codeInput");
+    const openAuthScreenBtn = document.getElementById("openAuthScreenBtn");
+    const openRoleBtn = document.getElementById("openRoleBtn");
+    const closeAuthBtn = document.getElementById("closeAuthBtn");
+    const errorMsg = document.getElementById("errorMsg");
+    const lockMsg = document.getElementById("lockMsg");
+    const authHint = document.getElementById("authHint");
+    const resultModal = document.getElementById("resultModal");
+    const passScreen = document.getElementById("passScreen");
+    const resultTag = document.getElementById("resultTag");
+    const resultName = document.getElementById("resultName");
+    const resultRole = document.getElementById("resultRole");
+    const resultDesc = document.getElementById("resultDesc");
+    const closeResultBtn = document.getElementById("closeResultBtn");
+    const passConfirmBtn = document.getElementById("passConfirmBtn");
+
+    let selectedPerson = null;
+    const roles = getOrCreateRoles();
+    const codes = getOrCreateCodes();
+    let viewState = getViewState();
+
+    createSparkles();
+    renderPeopleButtons();
+    renderAuthSelectButtons();
+    updatePeopleStatus();
+    updateLockMessage();
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getOrCreateRoles() {
+      const saved = localStorage.getItem(CONFIG.storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.roles && Object.keys(parsed.roles).length === CONFIG.people.length) {
+            return parsed.roles;
+          }
+        } catch (e) {}
+      }
+
+      const shuffled = shuffle(CONFIG.people);
+      const mafiaSet = new Set(shuffled.slice(0, CONFIG.mafiaCount));
+      const roleMap = {};
+      CONFIG.people.forEach(name => {
+        roleMap[name] = mafiaSet.has(name) ? "mafia" : "citizen";
+      });
+
+      localStorage.setItem(CONFIG.storageKey, JSON.stringify({
+        lockedAt: new Date().toISOString(),
+        roles: roleMap
+      }));
+
+      return roleMap;
+    }
+
+    function getOrCreateCodes() {
+      const saved = localStorage.getItem(CONFIG.codeKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && Object.keys(parsed).length === CONFIG.people.length) {
+            return parsed;
+          }
+        } catch (e) {}
+      }
+      localStorage.setItem(CONFIG.codeKey, JSON.stringify(CONFIG.defaultCodes));
+      return CONFIG.defaultCodes;
+    }
+
+    function getViewState() {
+      const saved = localStorage.getItem(CONFIG.stateKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed) return parsed;
+        } catch (e) {}
+      }
+      const initial = {};
+      CONFIG.people.forEach(name => {
+        initial[name] = { attempts: 0, lockedUntil: null, viewed: false };
+      });
+      localStorage.setItem(CONFIG.stateKey, JSON.stringify(initial));
+      return initial;
+    }
+
+    function saveViewState() {
+      localStorage.setItem(CONFIG.stateKey, JSON.stringify(viewState));
+    }
+
+    function isLocked(name) {
+      const state = viewState[name];
+      if (!state || !state.lockedUntil) return false;
+      return Date.now() < new Date(state.lockedUntil).getTime();
+    }
+
+    function getRemainingLockSeconds(name) {
+      const state = viewState[name];
+      if (!state || !state.lockedUntil) return 0;
+      return Math.max(0, Math.ceil((new Date(state.lockedUntil).getTime() - Date.now()) / 1000));
+    }
+
+    function markViewed(name) {
+      viewState[name].viewed = true;
+      saveViewState();
+      updatePeopleStatus();
+    }
+
+    function updatePeopleStatus() {
+      const buttons = peopleGrid.querySelectorAll(".person-btn");
+      buttons.forEach(btn => {
+        const name = btn.dataset.name;
+        const state = viewState[name];
+        const locked = isLocked(name);
+        btn.classList.toggle("checked", Boolean(state?.viewed));
+        btn.innerHTML = state?.viewed
+          ? `${name} <span style="display:block;font-size:.76rem;opacity:.7;margin-top:4px;">확인 완료</span>`
+          : locked
+            ? `${name} <span style="display:block;font-size:.76rem;opacity:.7;margin-top:4px;">잠시 잠금</span>`
+            : name;
+      });
+    }
+
+    function renderPeopleButtons() {
+      peopleGrid.innerHTML = "";
+      CONFIG.people.forEach(name => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "person-btn";
+        button.dataset.name = name;
+        button.addEventListener("click", () => openAuth(name));
+        peopleGrid.appendChild(button);
+      });
+    }
+
+    function renderAuthSelectButtons() {
+      authSelectGrid.innerHTML = "";
+      CONFIG.people.forEach(name => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "select-btn";
+        button.textContent = name;
+        button.dataset.name = name;
+        button.addEventListener("click", () => selectPerson(name));
+        authSelectGrid.appendChild(button);
+      });
+    }
+
+    function selectPerson(name) {
+      selectedPerson = name;
+      authSelectGrid.querySelectorAll(".select-btn").forEach(btn => {
+        btn.classList.toggle("selected", btn.dataset.name === name);
+      });
+      errorMsg.textContent = "";
+      lockMsg.textContent = "";
+      authHint.textContent = `${name} 선택됨 · 본인 코드 입력 후 확인해주세요`;
+      updateLockMessage();
+      codeInput.focus();
+    }
+
+    function showAuthScreen() {
+      authScreen.classList.add("show");
+      authScreen.setAttribute("aria-hidden", "false");
+      codeInput.value = "";
+      errorMsg.textContent = "";
+      lockMsg.textContent = "";
+      if (selectedPerson) {
+        authHint.textContent = `${selectedPerson} 선택됨 · 본인 코드 입력 후 확인해주세요`;
+      } else {
+        authHint.textContent = "이름 선택 후 코드 입력 → 역할 확인 버튼 누르기";
+      }
+    }
+
+    function openAuth(name) {
+      showAuthScreen();
+      selectPerson(name);
+      codeInput.value = "";
+    }
+
+    function closeAuth() {
+      authScreen.classList.remove("show");
+      authScreen.setAttribute("aria-hidden", "true");
+      codeInput.value = "";
+      errorMsg.textContent = "";
+      lockMsg.textContent = "";
+      authHint.textContent = "이름 선택 후 코드 입력 → 역할 확인 버튼 누르기";
+      selectedPerson = null;
+      authSelectGrid.querySelectorAll(".select-btn").forEach(btn => btn.classList.remove("selected"));
+    }
+
+    function updateLockMessage() {
+      if (!selectedPerson) {
+        lockMsg.textContent = "";
+        return;
+      }
+      if (!isLocked(selectedPerson)) {
+        lockMsg.textContent = "";
+        return;
+      }
+      const sec = getRemainingLockSeconds(selectedPerson);
+      lockMsg.textContent = `입력 오류로 잠시 잠금 중이에요. ${sec}초 후 다시 시도해주세요.`;
+    }
+
+    openAuthScreenBtn.addEventListener("click", () => {
+      selectedPerson = null;
+      authSelectGrid.querySelectorAll(".select-btn").forEach(btn => btn.classList.remove("selected"));
+      showAuthScreen();
+    });
+
+    closeAuthBtn.addEventListener("click", closeAuth);
+
+    openRoleBtn.addEventListener("click", verifyAndShowRole);
+    codeInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") verifyAndShowRole();
+      if (e.key === "Escape") closeAuth();
+    });
+
+    function verifyAndShowRole() {
+      errorMsg.textContent = "";
+      lockMsg.textContent = "";
+
+      if (!selectedPerson) {
+        errorMsg.textContent = "먼저 본인 이름을 선택해주세요.";
+        return;
+      }
+
+      if (isLocked(selectedPerson)) {
+        updateLockMessage();
+        return;
+      }
+
+      const inputCode = codeInput.value.trim();
+      if (!/^\d{4}$/.test(inputCode)) {
+        errorMsg.textContent = "4자리 숫자 코드를 입력해주세요.";
+        return;
+      }
+
+      const realCode = String(codes[selectedPerson]);
+      if (inputCode !== realCode) {
+        viewState[selectedPerson].attempts += 1;
+        if (viewState[selectedPerson].attempts >= CONFIG.maxAttempts) {
+          const lockedUntil = new Date(Date.now() + CONFIG.lockMinutes * 60 * 1000).toISOString();
+          viewState[selectedPerson].lockedUntil = lockedUntil;
+          viewState[selectedPerson].attempts = 0;
+          saveViewState();
+          updatePeopleStatus();
+          updateLockMessage();
+          errorMsg.textContent = "";
+          codeInput.value = "";
+          return;
+        }
+        saveViewState();
+        const left = CONFIG.maxAttempts - viewState[selectedPerson].attempts;
+        errorMsg.textContent = `코드가 달라요. ${left}번 더 틀리면 잠시 잠금됩니다.`;
+        codeInput.value = "";
+        return;
+      }
+
+      viewState[selectedPerson].attempts = 0;
+      viewState[selectedPerson].lockedUntil = null;
+      saveViewState();
+      closeAuth();
+      showRole(selectedPerson);
+    }
+
+    function showRole(name) {
+      const role = roles[name];
+      const isMafia = role === "mafia";
+
+      resultName.textContent = name;
+      resultRole.textContent = isMafia ? "🎯 당신은 마피아!" : "🫶 당신은 시민!";
+      resultRole.className = `role-title ${isMafia ? "mafia" : "citizen"}`;
+      resultTag.className = `modal-tag ${isMafia ? "mafia" : "citizen"}`;
+      resultTag.textContent = isMafia ? "🕶️ 비밀 마피아" : "🌼 일반 참가자";
+      resultDesc.innerHTML = isMafia
+        ? `쉿! 오늘의 비밀 미션은 <b>마피아끼리 동시에 만세하기</b>예요.<br>들키지 않게 타이밍을 맞춰서 성공해보세요!`
+        : `오늘의 미션은 <b>모임이 끝날 때까지 마피아 두 명을 찾아내는 것</b>이에요.<br>헤어질 때 누가 마피아였는지 맞혀보세요!`;
+
+      resultModal.classList.add("show");
+      resultModal.setAttribute("aria-hidden", "false");
+
+      if (isMafia) popConfetti(22);
+      markViewed(name);
+    }
+
+    closeResultBtn.addEventListener("click", () => {
+      resultModal.classList.remove("show");
+      resultModal.setAttribute("aria-hidden", "true");
+      passScreen.classList.add("show");
+      passScreen.setAttribute("aria-hidden", "false");
+    });
+
+    passConfirmBtn.addEventListener("click", () => {
+      passScreen.classList.remove("show");
+      passScreen.setAttribute("aria-hidden", "true");
+    });
+
+    function createSparkles() {
+      const container = document.getElementById("sparkles");
+      const stickers = ["💖", "✨", "🫧", "🎀", "🌈", "🍓", "☁️", "💫"];
+      for (let i = 0; i < 20; i++) {
+        const el = document.createElement("div");
+        el.className = Math.random() > 0.45 ? "sticker" : "sparkle";
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = 10 + Math.random() * 18 + "s";
+        el.style.animationDelay = -(Math.random() * 20) + "s";
+        if (el.className === "sticker") {
+          el.textContent = stickers[Math.floor(Math.random() * stickers.length)];
+        } else {
+          const size = 6 + Math.random() * 8;
+          el.style.width = size + "px";
+          el.style.height = size + "px";
+        }
+        container.appendChild(el);
+      }
+    }
+
+    function popConfetti(count = 18) {
+      const root = document.getElementById("confetti");
+      const colors = ["#ff4d94", "#6d4aff", "#00c2ff", "#ffd84d", "#00c389", "#ff8a00"];
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = (2.6 + Math.random() * 2.2) + "s";
+        piece.style.animationDelay = (Math.random() * .25) + "s";
+        piece.style.transform = `translateY(-12vh) rotate(${Math.random() * 360}deg)`;
+        root.appendChild(piece);
+        setTimeout(() => piece.remove(), 5000);
+      }
+    }
+
+    setInterval(() => {
+      if (selectedPerson && isLocked(selectedPerson)) updateLockMessage();
+      updatePeopleStatus();
+    }, 1000);
+  </script>
+</body>
+</html>
